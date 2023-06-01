@@ -10,6 +10,7 @@
 *.fot
 *.cb
 *.cb2
+*.hd
 .*.lb
 
 ## Intermediate documents:
@@ -299,3 +300,7 @@ TSWLatexianTemp*
 # option is specified. Footnotes are the stored in a file with suffix Notes.bib.
 # Uncomment the next line to have this generated file ignored.
 #*Notes.bib
+
+# only pdf files for docs folder
+docs/*
+!docs/*.pdf
