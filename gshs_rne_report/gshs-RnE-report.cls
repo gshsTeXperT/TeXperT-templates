@@ -1,6 +1,7 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % LaTeX document class for the GSHS RnE Report  % % %
 % % % First version 2022.11.05 by Junseok Lee % % % % % %
+% % % Version 1.1 released on 2023.06.12. % % % % % % % %
 % % % Copyright (C) 2022-present GSHS TeX Society % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
@@ -57,6 +58,10 @@
 
 \BeforeBeginEnvironment{equation}{\linespread{0.7}}
 \AfterEndEnvironment{equation}{\linespread{1.6}\vspace*{0.3\baselineskip}\noindent}
+
+\providecommand*\setfloatlocations[2]{\@namedef{fps@#1}{#2}}
+\setfloatlocations{figure}{htbp}
+\setfloatlocations{table}{htbp}
 
 \renewcommand{\date}[1]{
 	\setsepchar{.}
@@ -262,6 +267,9 @@
 \DeclareFieldFormat[article,inbook,incollection,periodical,misc,thesis,unpublished,techreport,book,legislation,legadminmaterial,jurisdiction,inproceedings,legal]{volume}{\ifinteger{#1}{Vol.\space}{}#1\addcomma}
 
 \DeclareFieldFormat[article,inbook,incollection,periodical,misc,thesis,unpublished,techreport,book,legislation,legadminmaterial,jurisdiction,inproceedings,legal]{pages}{pp.\,#1}
+
+\DeclareFieldFormat[misc,online]{url}{Website: \url{#1}}
+\DeclareFieldFormat[misc,online]{howpublished}{Website: \url{#1}}
 
 \DeclareFieldFormat{bibentrysetcount}{\mkbibparens{\mknumalph{#1}}}
 \DeclareFieldFormat{labelnumberwidth}{\mkbibbrackets{#1}}
