@@ -1,6 +1,7 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % LaTeX document class for the Humantech Paper Award  % % %
 % % % First edition 2022.11.05 by Junseok Lee % % % % % % % % %
+% % % Updated by Seungchan Park on 2024.09.04 % % % % % % %
 % % % Copyright (C) 2022-present GSHS TeX Society % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 \NeedsTeXFormat{LaTeX2e}
@@ -36,7 +37,7 @@
 %\MakeOuterQuote{"}				% Define active quotes
 
 \RequirePackage{setspace}
-\linespread{1.08}				% Line spacing 1.08
+\linespread{1.0}				% Line spacing 1.08
 
 \RequirePackage{tabularx}
 \RequirePackage{multicol}
@@ -74,12 +75,15 @@
 %\RequirePackage{float}			% For floating figure inside multicol
 % article의 twocolumn 옵션을 사용함에 따라 floating figure로 설정하지 않아도 됨.
 \RequirePackage{caption}		% Customizing caption
+
+\DeclareCaptionFont{myfont}{\fontsize{9pt}{9pt}\selectfont}
 \captionsetup{
 	justification=raggedright,
 	singlelinecheck=false,
 	labelsep=period,
 	labelfont=bf,
-	textfont=bf
+	textfont=bf,
+        font=myfont
 }
 \renewcommand{\figurename}{Fig}
 \def\fps@figure{htbp}
@@ -105,7 +109,7 @@
 	\setlength{\topmargin}{-14pt}
 	\setlength{\headsep}{15pt}
 	\fancyhf{}
-	\fancyhead[L]{\fontsize{12}{12}\selectfont\textbf{\color{gray} \@turn$^\text{th}$ Humantech Paper Award}}
+	\fancyhead[L]{\fontsize{12}{12}\selectfont\textbf{\color{gray} \@turn$^\text{st}$ Humantech Paper Award}}
 	\fancyfoot[R]{\fontsize{8}{8}\selectfont\color{gray}\thepage}
 	\fancyfoot[L]{\batangche\fontsize{8}{8}\selectfont\color{gray}
 		\begin{tabular}[t]{l}
@@ -118,7 +122,7 @@
 \setlength{\headsep}{18pt}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[LE,RO]{\fontsize{9}{9}\selectfont\color{gray} \@turn$^\text{th}$ Humantech Paper Award}
+\fancyhead[LE,RO]{\fontsize{9}{9}\selectfont\color{gray} \@turn$^\text{st}$ Humantech Paper Award}
 \fancyfoot[LE,RO]{\fontsize{8}{8}\selectfont\color{gray}\thepage}
 \fancyfoot[RE,LO]{\batangche\fontsize{8}{8}\selectfont\color{gray}
 	\begin{tabular}[t]{l}
