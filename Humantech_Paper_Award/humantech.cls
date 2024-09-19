@@ -75,6 +75,9 @@
 %\RequirePackage{float}			% For floating figure inside multicol
 % article의 twocolumn 옵션을 사용함에 따라 floating figure로 설정하지 않아도 됨.
 \RequirePackage{caption}		% Customizing caption
+\RequirePackage{floatrow}
+
+\floatsetup[table]{capposition=top}
 
 \DeclareCaptionFont{myfont}{\fontsize{9pt}{9pt}\selectfont}
 \captionsetup{
