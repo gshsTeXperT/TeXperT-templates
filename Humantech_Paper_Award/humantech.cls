@@ -68,6 +68,8 @@
 \titlespacing*{\section}{0pt}{2.5ex plus .5ex minus .3ex}{2ex plus .3ex}
 \titleformat{\subsection}[block]{\normalfont\fontsize{10}{10}\selectfont}{\batangche\thesubsection.}{0.5em}{}
 \titlespacing*{\subsection}{0pt}{2ex plus .3ex minus .3ex}{0.8ex plus .3ex}
+\titleformat{\subsubsection}[block]{\normalfont\fontsize{10}{10}\selectfont}{\batangche\thesubsubsection.}{0.5em}{}
+\titlespacing*{\subsubsection}{0pt}{2ex plus .3ex minus .3ex}{0.8ex plus .3ex}
 
 \RequirePackage{graphicx}
 \graphicspath{ {./images/} }
@@ -156,7 +158,7 @@
 	{\\\endtabularx\smallskip %
 	\\}
 
-\RequirePackage{cite}
+\RequirePackage[noadjust]{cite}
 \renewcommand{\url}[1]{\href{#1}{#1}}
 
 \renewcommand\refname{참고문헌}
