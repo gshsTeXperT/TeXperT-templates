@@ -1,0 +1,15 @@
+{
+  "Hangul": [
+    "HANBatang.ttf",
+    "HANBatangB.ttf",
+    "Dotum.ttf",
+    "Malgun.ttf",
+    "MalgunB.ttf"
+  ],
+  "English": [
+    "TIMES.ttf",
+    "TIMESBD.ttf",
+    "TIMESI.ttf",
+    "TIMESBI.ttf"
+  ]
+}
