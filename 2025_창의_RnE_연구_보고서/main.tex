@@ -1,0 +1,297 @@
+\documentclass[10pt]{article}
+
+\def\engtitle#1{\gdef\@engtitle{#1}}
+\def\engauthor#1{\gdef\@engauthor{#1}}
+
+\usepackage[utf8x]{inputenc}
+\usepackage{fontspec}
+\setromanfont{TIMES}[Path=./fonts/,Extension=.ttf,BoldFont=*BD,ItalicFont=*I,BoldItalicFont=*BI]
+\usepackage{kotex}
+\setmainfont{HANBatang.ttf}[Path=./fonts/,BoldFont=*B,WordSpace={1,1,0}]
+\newhangulfontfamily{\hdotum}{Dotum}[Path=./fonts/,Extension=.ttf]
+\newfontfamily{\dotum}{Dotum}[Path=./fonts/,Extension=.ttf]
+\setsanshangulfont{Malgun}[Path=./fonts/,Extension=.ttf,BoldFont=*B]
+\setsansfont{Malgun}[Path=./fonts/,Extension=.ttf,BoldFont=*B]
+\usepackage[a4paper,left=25mm,right=25mm,top=25mm,bottom=20mm]{geometry}
+%\usepackage{mathtools}
+%\numberwithin{equation}{section}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+%\usepackage{unicode-math}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\usepackage{amsfonts}
+\usepackage{xcolor}
+\usepackage{indentfirst}
+\usepackage{tabularray}
+\usepackage{siunitx}
+\usepackage{enumitem}
+\usepackage[linesnumbered, ruled]{algorithm2e}
+\usepackage{amstext,bm}
+\sisetup{group-separator = {,}}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\titleclass{\part}{straight}
+\titleformat{\part}[hang]
+{\normalfont\bfseries\fontsize{15}{15}\selectfont}{\thepart}{0em}{.~\,}
+\titlespacing*{\part}{0pt}{1.5ex plus 1ex minus .2ex}{1.3 ex plus .2ex}
+\renewcommand{\thepart}{\arabic{part}}
+
+\renewcommand\thesection{\Roman{section}} 
+\renewcommand\thesubsection{\arabic{subsection}} 
+\titleformat{\section}[block]{\normalfont\fontsize{12}{12}\selectfont\bfseries}{\fontspec[Path=./fonts/]{HANBatangB.ttf}\selectfont\thesection.}{0.5em}{}
+\titlespacing*{\section}{0pt}{2.5ex plus 1ex minus .2ex}{1.3ex plus .2ex}
+\titleformat{\subsection}[block]{\fontsize{11}{11}\selectfont\bfseries}{\fontspec[Path=./fonts/]{HANBatangB.ttf}\selectfont\thesubsection.}{0.5em}{}
+\titlespacing*{\subsection}{1ex}{1.5ex plus 0.6ex minus .3ex}{0.8ex plus .2ex}
+\titleformat{\subsubsection}[block]{\hspace{1ex}\bfseries}{\fontspec[Path=./fonts/]{HANBatangB.ttf}\selectfont\thesubsubsection.}{0.5em}{}
+\titlespacing*{\subsubsection}{0.5ex}{1.2ex plus 0.5ex minus .2ex}{0.5ex plus .1ex}
+
+\usepackage{tikz}
+\newcommand*{\slant}[2][76]{%
+	\begingroup
+	\hspace*{-1em}
+	\sbox0{#2}%
+	\pgfmathsetlengthmacro\wdslant{\the\wd0 + cos(#1)*\the\wd0}%
+	\leavevmode
+	\hbox to \wdslant{\hss
+		\tikz[baseline=(X.base),inner sep=0pt,transform canvas={xslant=cos(#1)}]\node(X){\usebox0};%
+		\hss
+		\vrule width 0pt height\ht0 depth\dp0 %
+	}%
+	\endgroup  
+}
+
+\let\u\underline
+\let\b\textbf
+\let\i\textit
+\newcommand{\til}{\,\textasciitilde\,}
+\setlength{\parindent}{0pt}
+\pagestyle{plain}
+\usepackage{etoolbox}
+\usepackage{setspace}
+\setstretch{1.4}
+\everydisplay\expandafter{%
+	\the\everydisplay%
+	\renewcommand{\baselinestretch}{1}\selectfont%
+}
+
+\makeatletter
+\g@addto@macro\normalsize{%
+    \setlength\abovedisplayskip{10.0pt plus 1.5pt minus 3.0pt}%
+    \setlength\belowdisplayskip{10.0pt plus 1.5pt minus 3.0pt}%
+    \setlength\abovedisplayshortskip{0.0pt plus 2.0pt}%
+    \setlength\belowdisplayshortskip{6.0pt plus 3.0pt minus 3.0pt} 
+}%
+
+
+\providecommand*\setfloatlocations[2]{\@namedef{fps@#1}{#2}}
+\setfloatlocations{figure}{htbp}
+\setfloatlocations{table}{htbp}
+\makeatother
+
+\definecolor{brownbg}{HTML}{8f7d41}
+\definecolor{brownfg}{HTML}{7a5721}
+\definecolor{bluefg}{HTML}{437fc1}
+
+\newcommand\teacherchecklist
+
+\renewenvironment{abstract}
+{\begin{center}\fontsize{12}{12}\selectfont\bfseries 가. 국문 초록\end{center}
+	\hrule
+	\setlength{\parindent}{7pt}\setlength{\parskip}{0.25\baselineskip plus 2pt}\par}
+{\vspace{6pt}\hrule}
+
+\newenvironment{paper}
+{\setlength{\leftskip}{1ex}
+	\setlength{\parindent}{7pt}\setlength{\parskip}{0.25\baselineskip plus 2pt}
+	\setcounter{table}{0}}
+{\clearpage}
+
+\input{preamble}
+\begin{document}
+\bgroup
+%{\fontsize{18}{20}\selectfont\bfseries [작성서식]\fontsize{10}{10}\selectfont}\bigskip
+	
+	%{\dotum\hdotum\fontsize{9}{9}\selectfont\color{bluefg}~【서식 4.2.2.】 중간성과공유회 개최 시 R\&E지원센터, 연구보고서 평가 시 창의재단 PMS 전체 보고서 취합접수}
+	
+	\begin{center}\fontsize{16}{16}\selectfont\b{\u{2025년 과학영재 창의연구(R\&E) 보고서}}\end{center}\vspace*{1ex}
+	\begin{tblr}{%
+			width=\textwidth,
+			columns={font=\bfseries},
+			colspec={|[1.5pt]Q[gray9,fg=black,c,m,wd=80pt]|X[3,c]|X[5,c]|X[6,c]|X[4,c]|[1.5pt]},
+            cell{1}{2}={c=2}{l},
+            cell{1}{4}={}{gray9},
+			cell{2-5}{2}={c=4}{l},
+			cell{6-7}{2}={c=4}{c},
+			cell{8}{1}={r=6}{c},
+            cell{8}{2}={}{gray9},
+            cell{8}{3}={c=3}{c},
+			cell{9}{2}={r=5}{c},
+			row{6-7}={ht=2.5em},
+            row{9-13}={ht=1.5em},
+			row{9}={gray9, fg=black},
+            vline{3-5}={8-13}{dotted},
+            hline{10-13}={1-5}{dotted},
+			cell{14}{1}={c=5}{c,white, fg=black},
+			colsep=0pt,row{4-5,8}={abovesep=0pt,belowsep=0pt},
+			hspan=minimal,
+			stretch=1.1}
+		\hline[1.5pt]
+        \SetCell[r=1]{c}학교명 & {\fontsize{10}{10}\selectfont 경기과학고등학교} & & 과제 관리번호 & \\ \hline
+		\SetCell[r=2]{c}연구과제명 & {\fontsize{10}{10}\selectfont (국문) 국문 제목} & & & \\ \hline
+		& {\fontsize{10}{10}\selectfont (영문) 영문 제목} & & & \\ \hline
+		{연구유형\\\vskip-1ex(√)} & \begin{tblr}{vline{2-5}={1-2}{dotted},hline{2}={1-5}{dotted},colspec={X[c]X[c]X[c]X[c]X[c]},row{1}={gray9,fg=black}} 자율주제R\&E & 지정주제R\&E & 다년도R\&E & IP-R\&E & 글로벌R\&E \\
+			√ & & & & \end{tblr} & & & & & \\\hline
+		{연구분야\\\vskip-1ex(√)} & {\begin{tblr}{vline{2-8}={1-2}{dotted},hline{2}={1-8}{dotted},colspec={X[c]X[c]X[c]X[c]X[c]X[c]X[c]X[c]},row{1}={gray9,fg=black},colsep=0pt} 수학 & 물리학 & 화학 & 생명과학 & 지구과학 & 정보 & 공학 & 융합 \\ & & & & & √ & & \end{tblr}} & & & \\ \hline
+		연구비 & 3,200,000원 & & & \\ \hline
+        연구 기간 & 2025.00.00. \textasciitilde \ 2025.00.00. & & & \\ \hline
+        연구 참여자 & 지도교사 & {\begin{tblr}{vline{2-4}={1-2}{dotted},hline{2}={1-4}{dotted},colspec={X[2.5,c]X[7,c]X[3.5,c]X[6,c]},cell{1-2}{1,3}={bg=gray9,fg=black},colsep=0pt} 성명 & & 담당교과 & \\ 연락처 & & e-mail & \end{tblr}} & & \\ \hline
+        & 학생 & 성~~명 & 생년월일(6자리) & 성별 \\
+		& & 홍길동 & 070101 & 남 \\
+		& & 홍길동 & 070101 & 남 \\
+		& & 홍길동 & 070101 & 남 \\
+		& & 홍길동 & 070101 & 남 \\ \hline
+		{\normalfont\addfontfeature{LetterSpace=-7.0}\fontsize{12}{12}\selectfont\\[-3ex] 관계 규정 등 제반사항 및 연구자 윤리를 준수하면서 본 사업을 성실히 수행하였습니다.\\[1.4em] 2025년 11월 10일 \\[1.4em] \raggedleft 지도교사 : \quad 정종광 \quad (인) \\ 참여학생 : \quad 홍길동 \quad (인) \quad 홍길동 \quad (인)\\ \quad 홍길동 \quad (인) \quad 홍길동 \quad (인)\\[1.5em] \centering{\fontsize{16}{16}\selectfont \bfseries한국과학창의재단이사장 귀하}} & & & & \\ \hline[1.5pt]
+	\end{tblr}\medskip
+	
+	\newpage
+\egroup
+\bgroup
+
+	\part{연구결과 요약문}
+	\begin{tblr}{width=\textwidth,hlines,vlines,column{2,4}={font=\fontsize{11}{11}\selectfont},column{1,3}={font=\sffamily\bfseries\fontsize{11}{11}\selectfont},colspec={Q[gray9,c,wd=80pt]Q[l,wd=120pt]Q[gray9,c,wd=80pt]X[l]},row{1}={ht=30pt},row{2}={ht=30pt},row{3}={ht=110pt},row{4}={ht=220pt},row{5}={ht=120pt},row{6}={ht=100pt},rows={m},cell{2-6}{2}={c=3}{l}}
+        {학교명} & & {과제 관리번호} & \\
+		{과~제~명} & {국문 제목} & & \\
+		{연구 필요성\\및 목적} & {연구의 필요성과 목적 작성} & & \\
+		{연구내용\\및\\연구결과} & {연구내용과 결과 작성} & & \\
+		{연구\\기대효과} & {향후 연구 계획 작성} & & \\
+		{주제어/핵심어\\(5개 이내)} & {Minesweeper, Algorithm X, Exact Cover} & & \\
+	\end{tblr}
+    
+	\newpage
+\egroup
+\bgroup
+	
+	\part{과제 수행 과정}
+	\DefTblrTemplate{contfoot-text}{default}{}
+	\DefTblrTemplate{conthead-text}{default}{}
+	\DefTblrTemplate{caption}{default}{}
+	\DefTblrTemplate{conthead}{default}{}
+	\DefTblrTemplate{capcont}{default}{}
+	\begin{longtblr}{width=\textwidth,hlines,vlines,column{2}={font=\fontsize{11}{11}\selectfont},column{1}={font=\sffamily\bfseries\fontsize{11}{11}\selectfont},hline{3-6}={2-3}{dotted},vline{3}={3-6}{dotted},colspec={Q[gray9,c,wd=60pt]Q[l,wd=50pt]X[l]},cell{1-2,7}{2}={c=2}{l},cell{2}{1}={r=5}{c},row{1}={ht=160pt},row{2}={ht=100pt},row{3-6}={ht=40pt},row{7}={ht=100pt},rows={m},hspan=minimal}
+		{전문가\\피드백 활용\\과정} & {전문가 피드백 작성} & \\
+		{문제해결\\과정} & {문제해결 과정 작성} & \\
+		{문제해결\\과정} & 팀원1 & {팀원1 작성}\\
+		{문제해결\\과정} & 팀원2 & {팀원2 작성}\\
+		{문제해결\\과정} & 팀원3 & {팀원3 작성}\\
+		{문제해결\\과정} & 팀원4 & {팀원4 작성}\\
+		{과제 수행\\과정에서의\\학습} & {과제 수행 과정에서의 학습 작성} & \\
+	\end{longtblr}
+	\newpage
+\egroup
+%{\dotum\hdotum\fontsize{9}{9}\selectfont\color{bluefg}~【서식 4.2.5.】~\_보고서 본문}%
+	\part{연구결과}
+	\bigskip\bigskip
+\bgroup
+	\setmainhangulfont{HumanMyeongjo.ttf}[Path=./fonts/,AutoFakeBold=1.5]
+	\setmainfont{TIMES}[Path=./fonts/,Extension=.ttf,BoldFont=*BD,ItalicFont=*I,BoldItalicFont=*BI]
+	\begin{tblr}{width=\textwidth,colspec={X[c]},row{1}={font=\bfseries\fontsize{16}{16}\selectfont},row{4}={font=\fontsize{12}{12}\selectfont\bfseries},row{2,5}={font=\color{gray}},row{3,6}={font=\fontsize{9}{9}\selectfont\color{gray}}}
+		{국문 제목} \\[.5ex]
+		{연구자1·연구자2·연구자3·연구자4}\\[-1em]
+		{과학영재학교 경기과학고등학교}\\[1ex]
+		{영문 제목}\\[.5ex]
+		{John Doe·John Doe·John Doe·John Doe}\\[-1em]
+		Gyeonggi Science High School for the Gifted\\
+	\end{tblr}
+	\setmainhangulfont{HANBatang.ttf}[Path=./fonts/,BoldFont=*B,WordSpace={1,0.2,0.2}]
+	\xetexkofontregime{latin}[puncts=prevfont,colons=prevfont,hyphens=latin,parens=hangul,cjksymbols=hoveangul]
+\egroup
+\begin{abstract}
+	 국문 초록은 400자 내외로 작성한다.\\
+	\emph{[주제어: 5개 이내 작성]}
+\end{abstract}
+\begin{paper}
+
+\input{sub/1introduction}
+\input{sub/2background_knowledge}
+\input{sub/3methodology}
+\input{sub/4result}
+\input{sub/5conclusion}
+
+\section*{■ 참고문헌}
+\renewcommand{\refname}{}
+\vspace*{-3em}
+\begin{thebibliography}{9}
+    \bibitem{np-complete}
+    Kaye, R. Minesweeper is np-complete. \textit{Mathematical Intelligencer} \textbf{22}, 9–15 (2000).
+    \bibitem{knuthX}
+    Knuth, D. E. Dancing links. \textit{arXiv preprint cs/0011047} (2000).
+\end{thebibliography}
+\end{paper}
+\bgroup
+\xetexkofontregime{hangul}[puncts=hangul,colons=hangul,hyphens=hangul,parens=hangul,cjksymbols=hangul,alphs=hangul]
+    %{\dotum\hdotum\fontsize{9}{9}\selectfont\color{bluefg}~【서식 4.2.6.】~\_보고서 본문}\medskip\\
+    {~\fontsize{11}{11}\selectfont【별첨 1】\bigskip\medskip}
+    \begin{center}
+    \bfseries
+    {\fontsize{16}{16}\selectfont 연구윤리 체크리스트}{\fontsize{12}{12}\selectfont (학생용)\smallskip}
+    \end{center}
+    \begin{tblr}{width=\textwidth,hlines,vlines,colspec={X[2,c,m]X[8,l,m]X[1,c,m]X[1,c,m]},columns={font=\bfseries\fontsize{11}{11}\selectfont},row{1}={ht=20pt,gray9,c,font=\sffamily\bfseries\fontsize{11}{11}\selectfont},column{1}={font=\sffamily\bfseries\fontsize{11}{11}\selectfont},cell{4}{1}={r=3}{c},cell{8}{1}={r=2}{c},stretch=1.1}
+    구분 & 내용 & 예 & 아니요 \\
+    저자 & 저자는 모둠 구성원이 함께 논의하여 결정하였고, 기여한 사람만을 정직하게 제시했다. & \rlap{$\checkmark$}$\square$ & $\square$ \\
+    {자료조사\\/출처표기} & 보고서에 다른 사람의 자료를 인용한 부분과 출처를 명확하게 알 수 있도록 표기하였다. & \rlap{$\checkmark$}$\square$ & $\square$ \\
+    {연구과정\\/결론} & 모든 데이터는 연구노트에 직접 기록하였으며, 실수를 포함하여 연구 과정에 일어난 모든 상황을 정직하게 기록하였다. & \rlap{$\checkmark$}$\square$ & $\square$ \\
+    & 실험에서 얻지 않은 데이터는 결과에 포함하지 않았다. & \rlap{$\checkmark$}$\square$ & $\square$ \\
+    & 실험에서 얻은 데이터를 임의로 고치거나 누락하지 않았다. & \rlap{$\checkmark$}$\square$ & $\square$ \\
+    참고문헌 & 참고문헌 목록에는 본문에 인용한 글의 목록을 모두 제시하였다. & \rlap{$\checkmark$}$\square$ & $\square$ \\
+    중복게재 & 같은 내용의 연구 결과를 다른 기관 또는 대회에 제출하지 않았다. & \rlap{$\checkmark$}$\square$ & $\square$ \\
+    & 이전 연구결과와 동일 또는 실질적으로 유사한 연구내용 또는 저작물을 출처표시 없이 활용하지 않았다. & \rlap{$\checkmark$}$\square$ & $\square$ \\
+    \end{tblr}
+    \vskip8ex
+    \begin{center}
+    \bfseries
+    {\fontsize{12}{12}\selectfont 제출한 보고서에 대해 연구윤리 준수여부를 성실히 이행하였음을 확인합니다.}\\[3em]
+    \fontsize{13}{13}\selectfont 2025년 11월 10일\\[3em]
+    \end{center}
+    \begin{flushright}
+    \bfseries
+    {\fontsize{14}{14}\selectfont 연구참여자 {\color{brownfg} 홍길동}~~(인)~~{\color{brownfg} 홍길동}~~(인)~~{\color{brownfg} 홍길동}~~(인)~~{\color{brownfg} 홍길동}~~(인)}\\[1em]
+    {\color{brownfg}\fontsize{11}{11}\selectfont (R\&E 참여학생 전원 서명)}\\[4em]
+    \end{flushright}
+    
+    {\sffamily\addhangulfontfeature{InterHangul=-0.1em}\selectfont\color{brownfg} ※ (주의) 평가과정에서 연구윤리 위반 사항이 드러나는 경우 연구과제 수행 취소 및 연구비가 회수될 수 있음.}
+\egroup
+
+\newpage
+\bgroup
+\xetexkofontregime{hangul}[puncts=hangul,colons=hangul,hyphens=hangul,parens=hangul,cjksymbols=hangul,alphs=hangul]
+    %{\dotum\hdotum\fontsize{9}{9}\selectfont\color{bluefg}~【서식 4.2.6.】~\_보고서 본문}\medskip\\
+    {~\fontsize{11}{11}\selectfont【별첨 2】\bigskip\medskip}
+    \begin{center}
+    \bfseries
+    {\fontsize{16}{16}\selectfont R\&E 지도 체크리스트}{\fontsize{12}{12}\selectfont (지도교사용)\smallskip}
+    \end{center}
+    \begin{tblr}{width=\textwidth,hlines,vlines,colspec={X[2.2,c,m]X[7.8,l,m]X[1,c,m]X[1,c,m]},columns={font=\bfseries\fontsize{11}{11}\selectfont},row{1}={ht=20pt,gray9,c,font=\sffamily\bfseries\fontsize{11}{11}\selectfont},row{2-4}={ht=60pt},row{5}={ht=180pt},column{1}={font=\sffamily\bfseries\fontsize{11}{11}\selectfont},cell{5}{1}={c=4}{l},stretch=1.1}
+    구분 & 내용 & 예 & 아니요 \\
+    연구보고서 & 제목, 초록, 연구 필요성 및 목적, 연구문제 및 연구방법, 연구결과 및 해석, 참고문헌이 적절하게 작성되었는지 확인하였는가? & \rlap{$\checkmark$}$\square$ & $\square$ \\
+    연구윤리 & 표절이나 불필요한 저자 포함이나 실험 데이터 조작 등 윤리적 문제에 저촉되지 않게 지도하였는가? & \rlap{$\checkmark$}$\square$ & $\square$ \\
+    실험안전 & 모든 연구과정에서 안전을 확보하고 안전교육을 진행하였는가? & \rlap{$\checkmark$}$\square$ & $\square$ \\
+    {지도교사 의견\\[1.5em]
+     \color{brownfg} 지도교사 의견 작성}\\
+    \end{tblr}
+    \vskip8ex
+    \begin{center}
+    \bfseries
+    {\fontsize{12}{12}\selectfont 위 체크리스트를 사실에 기반하여 작성하였음을 확인합니다.
+}\\[3em]
+    \fontsize{13}{13}\selectfont 2025년 11월 10일\\[3em]
+    \end{center}
+    \begin{flushright}
+    \bfseries
+    {\fontsize{14}{14}\selectfont 지도교사 {\color{brownfg} 정종광}~~(인)}\\[1em]
+    \end{flushright}
+\egroup
+\end{document}
